@@ -1,5 +1,5 @@
 # CrossPy
-A package for cross-validation in Python.
+The `CrossPy` package (short for _Cross_-validation in *Py*thon) is a package for performing cross-validation in Python.
 
 ### Contributors
 
@@ -23,7 +23,7 @@ Three main functions in `CrossPy`:
 
 ### Similar packages
 
-The [`scikit-learn`](http://scikit-learn.org/stable/) library in Python implements the first two function we propose in [`sklearn.model_selection.train_test_split`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) and [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html). However, we have realized that although plotting cross-validation scores against hyper-parameter values is something we often do, there are no existing functions to implement such plot directly. Therefore, we consider `plot()` function of `CrossPy` as an addition to the functions offered by `sklearn` for cross-validation.
+The [`scikit-learn`](http://scikit-learn.org/stable/) library in Python implements the first two function we propose in [`sklearn.model_selection.train_test_split`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) and [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html). However, we have realized that although plotting cross-validation scores against hyper-parameter values is something we often do, there are no existing functions to implement such plot directly. Therefore, we consider a `plot()` function of `CrossPy` as an addition to the functions offered by `sklearn` for cross-validation.
 
 
 ### License
