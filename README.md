@@ -15,7 +15,7 @@ Cross-validation is an important technique used in model selection and hyper-par
 
 Three main functions in `CrossPy`:
 
-- `split_data()`: This function partitions data into `k`-fold and returns the partitioned indices. A random shuffling option is provided. (`stratification` option for imbalanced representations will also be included if time allows.)
+- `split_data()`: This function split data according to input train/all ratio returns the split data. A random shuffling option is provided. (`stratification` option for imbalanced representations will also be included if time allows.)
 
 - `cross_validation()`: This function performs `k`-fold cross validation using the partitioned data and a selected model. It returns the scores of each validation. Additional methods for cross validation will be implemented (such as "Leave-One-Out" if time allows).  
 
