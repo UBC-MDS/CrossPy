@@ -4,7 +4,19 @@ import pandas as pd
 #from CrossPy.CrossPy import crosspy
 import CrossPy
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import cross_val_score
 
+
+data = pd.read_csv("test_data.csv")
+
+X = data.iloc[:,0:3]
+y = data.iloc[:,3]
+
+lm_mod_not_0 = LinearRegression()
+cv_score_mod_not_0 = cross_val_score(lm_mod_not_0, X, y, cv = 3)
+
+lm_mod_0 = LinearRegression()
+cv_score_mod_0  = cross_val_score(lm_mod_0, X, y, cv = 5)
 
 # read test data
 data = pd.read_csv("./test_data/test_data_short.csv")
@@ -19,11 +31,11 @@ y_2 = pd.concat([y, y], axis=1)
 # build a model
 lm = LinearRegression()
 
+# read scikitlearn CV results
+file = read("")
 
 class Test_train_test_split():
-'''
-Tests for function `train_test_split(X, y, test_size = 0.25, shuffle = True, random_state = None)`
-'''
+#  Tests for function `train_test_split(X, y, test_size = 0.25, shuffle = True, random_state = None)
 
     # Input Type Errors
 
@@ -112,9 +124,7 @@ Tests for function `train_test_split(X, y, test_size = 0.25, shuffle = True, ran
 
 
 class Test_cross_validation():
-'''
-Tests for function `cross_validation(model, X, y, k = 3, shuffle = TRUE, random_state = None)`
-'''
+#'Tests for function `cross_validation(model, X, y, k = 3, shuffle = TRUE, random_state = None)
 
     # Input Type Errors
 
@@ -175,12 +185,28 @@ Tests for function `cross_validation(model, X, y, k = 3, shuffle = TRUE, random_
 
 
     # Output Errors
-    cv_scores = cross_validation(lm, X=X, y=y)
 
-    cv_scores_sklearn = np.array([])
+    data = pd.read_csv("test_data.csv")
+    X = data.iloc[:,0:3]
+    y = data.iloc[:,3]
 
-    def compare_sklearn():
-        assert max(cv_scores - cv_scores_sklearn) < 0.000001, "results doesn't match sklearn"
+    # When Input is 10 Observations, k of 5 results in mod 0 (10 mod 5 == 0)
+    cv_scores_mod_0 = cross_validation(lm, X=X, y=y, k = 5)
+
+    lm_mod_0 = LinearRegression()
+    cv_score_mod_0  = cross_val_score(lm_mod_0, X, y, cv = 5)
+
+    # When Input is 10 Observations, k of 3 results in not mod 0 (10 mod 5 != 0)
+    cv_scores_mod_not_0 = cross_validation(lm, X=X, y=y, k = 3)
+
+    lm_mod_not_0 = LinearRegression()
+    sk_cv_score_mod_not_0 = cross_val_score(lm_mod_not_0, X, y, cv = 3)
+
+    def compare_sklearn_mod_0():
+        assert max(cv_scores_mod_0 - sk_cv_score_mod_0) < 0.000001, "results doesn't match sklearn"
+
+    def compare_sklearn_mod_0():
+        assert max(cv_scores_mod_not_0 - sk_cv_score_mod_not_0) < 0.000001, "results doesn't match sklearn"
 
 
 class summary_cv():
