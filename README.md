@@ -9,21 +9,21 @@ The `CrossPy` package (short for _Cross_-validation in *Py*thon) is a package fo
 
 ### Summary
 
-Cross-validation is an important technique used in model selection and hyper-parameter optimization. Scores from cross-validation are a good estimation of test score of a predictive model in test data or new data as long as the IID assumption approximately holds in data. This package aims to provide a standardized pipeline for performing cross-validation for different modeling functions in Python. In addition, visualization of the cross-validation results are provided for users.  
+Cross-validation is an important technique used in model selection and hyper-parameter optimization. Scores from cross-validation are a good estimation of test score of a predictive model in test data or new data as long as the IID assumption approximately holds in data. This package aims to provide a standardized pipeline for performing cross-validation for different modeling functions in Python. In addition, summary statistics of the cross-validation results are provided for users.  
 
 ### Functions
 
 Three main functions in `CrossPy`:
 
-- `split_data()`: This function split data according to input train/all ratio returns the split data. A random shuffling option is provided. (`stratification` option for imbalanced representations will also be included if time allows.)
+- `train_test_split()`: This function split data according to input train/all ratio returns the split data. A random shuffling option is provided. (`stratification` option for imbalanced representations will also be included if time allows.)
 
 - `cross_validation()`: This function performs `k`-fold cross validation using the partitioned data and a selected model. It returns the scores of each validation. Additional methods for cross validation will be implemented (such as "Leave-One-Out" if time allows).  
 
-- `plot()`: This function visualizes the cross-validation scores against the tuning of hyper-parameters. For many hyper-parameters, it outputs a grid of plots with one plot for one hyper-parameter.
+- `summary_cv()`: This function outputs summary statistics(mean, standard deviation, mode, median) of cross-validation scores.
 
 ### Similar packages
 
-The [`scikit-learn`](http://scikit-learn.org/stable/) library in Python implements the first two functions we propose in [`sklearn.model_selection.train_test_split`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) and [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html). However, we have realized that although plotting cross-validation scores against hyper-parameter values is something we often do, there are no existing functions to implement such plot directly. Therefore, we consider a `plot()` function of `CrossPy` as an addition to the functions offered by `sklearn` for cross-validation.
+The [`scikit-learn`](http://scikit-learn.org/stable/) library in Python implements the first two functions we propose in [`sklearn.model_selection.train_test_split`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) and [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html). 
 
 
 ### License

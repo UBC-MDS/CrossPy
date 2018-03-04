@@ -31,13 +31,13 @@ class crosspy():
         '''
         pass
 
-    def cross_validate(self, model, X, y, k = 3, shuffle = TRUE, random_state = None):
+    def cross_validation(self, model, X, y, k = 3, shuffle = TRUE, random_state = None):
         '''
         Perform cross validation on features X and target y using the model
 
         inputs
         ------
-        model: an model object from sklearn
+        model: a model object from sklearn
         X: a pandas dataframe with at least 3 rows
         y: a pandas dataframe with at least 3 rows and only one column
         k: the No. of folds for cross validation
@@ -50,17 +50,19 @@ class crosspy():
         '''
         pass
 
-    def summary(self):
+    def summary_cv(self, scores):
         '''
         Calculate statistics of cross validation cv_scores
 
         inputs
         ------
+        scores: a vector of validation scores
 
         returns:
         -------
         self.mean: mean of CV scores
-        self.standard_deviation: standard_deviation of CV CV scores
+        self.standard_deviation: standard_deviation of CV scores
+        self.mode: mode of CV scores
         self.median: median of CV scores
         '''
         pass
