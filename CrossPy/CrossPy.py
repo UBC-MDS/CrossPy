@@ -1,5 +1,3 @@
-
-
 def train_test_split(X, y, test_size = 0.25, shuffle = True, random_state = None):
     '''
     split features X and target y into train and test sets
@@ -22,7 +20,10 @@ def train_test_split(X, y, test_size = 0.25, shuffle = True, random_state = None
     '''
     pass
 
-def cross_validation(model, X, y, k = 3, shuffle = TRUE, random_state = None):
+
+
+
+def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
     '''
     Perform cross validation on features X and target y using the model
 
@@ -57,3 +58,4 @@ def summary_cv(scores):
     median: median of CV scores
     '''
     pass
+
