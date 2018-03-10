@@ -31,15 +31,16 @@ def test_y_as_dataframe():
         train_test_split(lm(), X = X, y = "y")
 
 def test_k_as_number():
-    with pytest.raises(TypeError('`k` must be an integer')):
-        cross_validation(lm, X = X, y = y, k = '3')
+    X, y = data_gen()
+    with pytest.raises(TypeError):
+        cross_validation(lm(), X = X, y = y, k = '3')
 
 def test_shuffle_as_boolean():
-    with pytest.raises(TypeError('`shuffle` must be True or False')):
+    with pytest.raises(TypeError):
         cross_validation(lm, X = X, y = y, shuffle = '1')
-    with pytest.raises(TypeError('`shuffle` must be True or False')):
+    with pytest.raises(TypeError):
         cross_validation(lm, X = X, y = y, shuffle = 1)
-    with pytest.raises(TypeError('`shuffle` must be True or False')):
+    with pytest.raises(TypeError):
         cross_validation(lm, X=X, y=y, shuffle=1.0)
 
 def test_random_state_as_number():
