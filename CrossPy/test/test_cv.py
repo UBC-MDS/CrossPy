@@ -12,23 +12,7 @@ from sklearn.model_selection import cross_val_score
 
 ## Data Generation
 
-def data_gen(nrows=100):
-    '''
-    Generate data
-
-
-    '''
-    tmp_data = {"X0": range(nrows), "X1": np.random.rand(nrows)}
-    X = pd.DataFrame(tmp_data)
-
-    tmp_data = {"y": range(nrows)}
-    y = pd.DataFrame(tmp_data)
-
-    return X, y
-
-def lm():
-    lm = LinearRegression()
-    return lm
+from CrossPy.test.test_all import data_gen, lm
 
 
 ## Tests for_cross_validation()
@@ -42,8 +26,9 @@ def test_X_as_dataframe():
         cross_validation(lm(), X = "X", y = y)
 
 def test_y_as_dataframe():
-    with pytest.raises(TypeError('`y` must be a dataframe')):
-        cross_validation(lm, X = X, y = y_list)
+    X, y = data_gen()
+    with pytest.raises(TypeError):
+        train_test_split(lm(), X = X, y = "y")
 
 def test_k_as_number():
     with pytest.raises(TypeError('`k` must be an integer')):
