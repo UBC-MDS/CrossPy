@@ -36,55 +36,72 @@ def test_k_as_number():
         cross_validation(lm(), X = X, y = y, k = '3')
 
 def test_shuffle_as_boolean():
+    X, y = data_gen()
     with pytest.raises(TypeError):
-        cross_validation(lm, X = X, y = y, shuffle = '1')
+        cross_validation(lm(), X = X, y = y, shuffle = '1')
     with pytest.raises(TypeError):
-        cross_validation(lm, X = X, y = y, shuffle = 1)
-    with pytest.raises(TypeError):
-        cross_validation(lm, X=X, y=y, shuffle=1.0)
+        cross_validation(lm(), X=X, y=y, shuffle=1.0)
 
 def test_random_state_as_number():
-    with pytest.raises(TypeError('`random_state` must be a number or None')):
-        cross_validation(lm, X = X, y = y, random_state = '10')
+    X, y = data_gen()
+    with pytest.raises(TypeError):
+        cross_validation(lm(), X = X, y = y, random_state = '10')
+
+def test_model_linear_regression():
+    X, y = data_gen()
+    with pytest.raises(TypeError):
+        cross_validation("LINEAR MODEL", X = X, y = y, random_state = 10)
 
 
 # Input Value Errors
 
 def test_k_range():
-    with pytest.raises(TypeError('`k` must be an integer 2 or greater')):
-        cross_validation(lm, X=X, y=y, k = 1)
-    with pytest.raises(TypeError('`k` must be greater than # obs in X and y')):
-        cross_validation(lm, X=X, y=y, k = 40)
+    X, y = data_gen(nrows = 5)
+    with pytest.raises(TypeError):
+        cross_validation(lm(), X=X, y=y, k = 1)
+    with pytest.raises(TypeError):
+        cross_validation(lm(), X=X, y=y, k = 40)
 
 
 def test_random_state_range():
-    with pytest.raises(TypeError('`random_state` must be nonnegative')):
+    X, y = data_gen()
+    with pytest.raises(TypeError):
         cross_validation(lm, X=X, y=y, random_state=-10)
 
 
 # Input Dimension Errors
 
 def test_X_y_match():
-    with pytest.raises(TypeError("dim of `X` doesn't equal dim of `y`")):
-        cross_validation(lm, X=X_longer, y=y)
+    X, y = data_gen()
+    y = y[0:90]
+    with pytest.raises(TypeError):
+        cross_validation(lm(), X=X, y=y)
 
 
 def test_y_one_column():
-    with pytest.raises(TypeError('`y` is more than one feature')):
-        cross_validation(lm, X=X, y=y_2)
+    X, y = data_gen()
+    y = X
+    with pytest.raises(TypeError):
+        cross_validation(lm(), X=X, y=y)
 
 
 def test_X_y_Nrows():
-    with pytest.raises(TypeError('sample size is less than 3, too small for CV')):
-        cross_validation(lm, X=X.iloc[0:2, :], y=y.iloc[0:2, :])
+    X, y = data_gen(nrows = 2)
+    with pytest.raises(TypeError):
+        cross_validation(lm(), X=X, y=y)
 
 
 # Output Errors
 
-def compare_sklearn_mod_0():
-    assert max(cv_scores_mod_0 - sk_cv_score_mod_0) < 0.000001, "results doesn't match sklearn"
+def test_compare_sklearn_mod_0():
+    X, y = data_gen(nrows = 99)
+    function_scores = cross_validation(lm(), X = X, y = y, shuffle = False)
+    sklearn_scores = cross_val_score(lm(), X = X, y = y, cv = 3)
+    assert max(function_scores - sklearn_scores) < 0.000001, "results doesn't match sklearn"
 
-def compare_sklearn_mod_0():
-    assert max(
-        cv_scores_mod_not_0 - sk_cv_score_mod_not_0) < 0.000001, "results doesn't match sklearn"
+def test_compare_sklearn_mod_not_0():
+    X, y = data_gen(nrows = 100)
+    function_scores = cross_validation(lm(), X = X, y = y, shuffle = False)
+    sklearn_scores = cross_val_score(lm(), X = X, y = y, cv = 3)
+    assert max(function_scores - sklearn_scores) < 0.000001, "results doesn't match sklearn"
 
