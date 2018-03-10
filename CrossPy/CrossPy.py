@@ -1,3 +1,22 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath("."))
+sys.path.insert(0, os.path.abspath("../"))
+
+import pytest
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import cross_val_score
+
+
+#from CrossPy.test.test import data_gen
+
+#X, y = data_gen()
+
+
+#print(not isinstance(y, pd.DataFrame))
+
 def train_test_split(X, y, test_size = 0.25, shuffle = True, random_state = None):
     '''
     split features X and target y into train and test sets
@@ -40,7 +59,14 @@ def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
     --------
     scores: a vector of validation scores
     '''
-    pass
+    if not isinstance(X, pd.DataFrame):
+        raise TypeError('`X` must be a dataframe')
+    if not isinstance(y, pd.DataFrame):
+        raise TypeError('`y` must be a dataframe')
+    else:
+        pass
+
+
 
 def summary_cv(scores):
     '''
