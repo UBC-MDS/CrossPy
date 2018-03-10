@@ -1,8 +1,12 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath("."))
+sys.path.insert(0, os.path.abspath("../"))
+
 import pytest
 import numpy as np
 import pandas as pd
-#from CrossPy.CrossPy import crosspy
-#from CrossPy.CrossPy import train_test_split, cross_validation, summary_cv
+from CrossPy.CrossPy import train_test_split, cross_validation, summary_cv
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_val_score
 
@@ -34,8 +38,8 @@ def lm():
 
 def test_X_as_dataframe():
     X, y = data_gen()
-    with pytest.raises(TypeError('`X` must be a dataframe')):
-        cross_validation(lm(), X = 10, y = y)
+    with pytest.raises(TypeError):
+        cross_validation(lm(), X = "X", y = y)
 
 def test_y_as_dataframe():
     with pytest.raises(TypeError('`y` must be a dataframe')):
