@@ -45,15 +45,15 @@ def train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None):
         raise TypeError('`random_state` must be a number or None')
     if not (random_state is None):
         if random_state <= 0:
-            raise TypeError('`random_state` must be nonnegative')
+            raise ValueError('`random_state` must be nonnegative')
     if test_size < 0 or test_size >= 1:
-        raise TypeError('`test_size` must in range [0, 1]')
+        raise ValueError('`test_size` must in range [0, 1]')
     if X.shape[0] != y.shape[0]:
-        raise TypeError("dim of `X` doesn't equal dim of `y`")
+        raise ValueError("dim of `X` doesn't equal dim of `y`")
     if y.shape[1] != 1:
-        raise TypeError('`y` is more than one feature')
+        raise ValueError('`y` is more than one feature')
     if X.shape[0] < 3:
-        raise TypeError('sample size is less than 3, too small for split')
+        raise ValueError('sample size is less than 3, too small for split')
 
     nrows = X.shape[0]
     # where to split
