@@ -132,8 +132,8 @@ def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
         ind_train, ind_val = next(indices)
         X_train = X.iloc[ind_train, :]
         X_val = X.iloc[ind_val, :]
-        y_train = X.iloc[ind_train, :]
-        y_val = X.iloc[ind_val, :]
+        y_train = y.iloc[ind_train, :]
+        y_val = y.iloc[ind_val, :]
 
         # Fit each model and score with R^2
         model.fit(X_train, y_train)
