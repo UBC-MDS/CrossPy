@@ -204,27 +204,27 @@ def gen_summary():
 # Input Errors:
 
 def test_input_as_dataframe():
-    with pytest.raises(TypeError('`scores` must be a list.')):
+    with pytest.raises(TypeError):
         summary_cv(scores = pd.DataFrame(data={'cv_scores':[0.97, 0.96, 0.98, 0.97, 0.95, 0.97]}))
 
 def test_input_as_tuple():
-    with pytest.raises(TypeError('`scores` must be a list.')):
+    with pytest.raises(TypeError):
         summary_cv(scores = (0.96, 0.97, 0.98, 0.99))
 
 def test_input_contains_string():
-    with pytest.raises(TypeError('Elements of `scores` must be numbers.')):
-        summary_cv(scores = c(0.96, 0.97, "0.98"))
+    with pytest.raises(TypeError):
+        summary_cv(scores = [0.96, 0.97, "0.98"])
 
 def test_zero_length_input():
-    with pytest.raises(DimensionError('`scores` cannot be of length zero.')):
+    with pytest.raises(TypeError):
         summary_cv(scores = [])
 
 def test_input_contains_negative():
-    with pytest.raises(ValueError('`scores` must be a nonnegative number.')):
+    with pytest.raises(ValueError):
         summary_cv(scores = [0.96, 0.97, -0.98])
 
 def test_input_contains_over_1():
-    with pytest.raises(ValueError('`scores` must be between 0 and 1.')):
+    with pytest.raises(ValueError):
         summary_cv(scores = [0.96, 0.97, 1.98])
 
 # Output Errors
@@ -237,12 +237,13 @@ def test_output_length():
 
 def test_is_float():
     assert isinstance(summary_cv(gen_summary())['mean'], float)
-    assert isinstance(summary_cv(gen_summary())['sd'], float)
-    assert isinstance(summary_cv(gen_summary())['mode'], float)
     assert isinstance(summary_cv(gen_summary())['median'], float)
+    assert isinstance(summary_cv(gen_summary())['mode'], float)
+    assert isinstance(summary_cv(gen_summary())['sd'], float)
+
 
 def test_summary_cv():
-    assert summary_cv(gen_summary())['mean'] == 0.9666667
-    assert summary_cv(gen_summary())['sd'] == 0.01032796
-    assert summary_cv(gen_summary())['mode'] == 0.97
+    assert summary_cv(gen_summary())['mean'] == 0.967
     assert summary_cv(gen_summary())['median'] == 0.97
+    assert summary_cv(gen_summary())['mode'] == 0.97
+    assert summary_cv(gen_summary())['sd'] == 0.009
