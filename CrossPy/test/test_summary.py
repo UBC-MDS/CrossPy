@@ -53,12 +53,10 @@ def test_output_length():
 def test_is_float():
     assert isinstance(summary_cv(gen_summary())['mean'], float)
     assert isinstance(summary_cv(gen_summary())['median'], float)
-    assert isinstance(summary_cv(gen_summary())['mode'], float)
     assert isinstance(summary_cv(gen_summary())['sd'], float)
 
 
 def test_summary_cv():
     assert summary_cv(gen_summary())['mean'] == 0.967
     assert summary_cv(gen_summary())['median'] == 0.97
-    assert summary_cv(gen_summary())['mode'] == 0.97
     assert summary_cv(gen_summary())['sd'] == 0.009
