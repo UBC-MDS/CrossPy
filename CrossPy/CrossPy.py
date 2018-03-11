@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.abspath("../"))
 import pytest
 import numpy as np
 import pandas as pd
+from statistics import mode
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_val_score
 from sklearn.utils import check_random_state
@@ -154,14 +155,32 @@ def summary_cv(scores):
 
     inputs
     ------
-    scores: a vector of validation scores
+    scores: a list of validation scores
 
     returns:
     -------
-    mean: mean of CV scores
-    standard_deviation: standard_deviation of CV scores
-    mode: mode of CV scores
-    median: median of CV scores
+    summary: a dictionary with the following statistics;
+        mean: mean of CV scores
+        standard_deviation: standard_deviation of CV scores
+        mode: mode of CV scores
+        median: median of CV scores
     '''
-    pass
+    if not isinstance(scores, list):
+        raise TypeError('`scores` must be a list')
+    if len(scores) == 0:
+        raise TypeError('`scores` cannot be of length zero')
+    if not all(isinstance(item, (float, int)) for item in scores):
+        raise TypeError('Elements of `scores` must be numbers')
+    if not all(item >= 0 for item in scores):
+        raise ValueError('Elements of `scores` must be nonnegative')
+    if not all(item <= 1 for item in scores):
+        raise ValueError('Elements of `scores` must be between 0 and 1')
 
+    summary = {'mean' : [], 'median': [], 'mode': [], 'sd': []}
+
+    summary['mean'] = round(float(np.mean(scores)), 3)
+    summary['median'] = round(float(np.median(scores)), 3)
+    summary['mode'] = round(float(mode(scores)), 3)
+    summary['sd'] = round(float(np.std(scores)), 3)
+
+    return summary
