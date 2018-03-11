@@ -12,7 +12,30 @@ from sklearn.model_selection import cross_val_score
 
 ## Data Generation
 
-from CrossPy.test.test_all import data_gen, lm
+def data_gen(nrows=100):
+    '''
+    Generate data
+
+    input:
+    ------
+    nrows: number of rows, an integer
+
+    output:
+    ------
+    X, a dataframe with nrows and two columns
+    y, a dataframe with nrows and one column
+    '''
+    tmp_data = {"X0": range(nrows), "X1": np.random.rand(nrows)}
+    X = pd.DataFrame(tmp_data)
+
+    tmp_data = {"y": range(nrows)}
+    y = pd.DataFrame(tmp_data)
+
+    return X, y
+
+def lm():
+    lm = LinearRegression()
+    return lm
 
 
 ## Tests for_cross_validation()

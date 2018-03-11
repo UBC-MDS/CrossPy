@@ -3,12 +3,39 @@ import os
 sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath("../"))
 
+import numpy as np
+import pandas as pd
+
 import pytest
 from CrossPy.CrossPy import train_test_split, cross_validation, summary_cv
 
 ## Data Generation
 
-from CrossPy.test.test_all import data_gen
+def data_gen(nrows=100):
+    '''
+    Generate data
+
+    input:
+    ------
+    nrows: number of rows, an integer
+
+    output:
+    ------
+    X, a dataframe with nrows and two columns
+    y, a dataframe with nrows and one column
+
+    '''
+    tmp_data = {"X0": range(nrows), "X1": np.random.rand(nrows)}
+    X = pd.DataFrame(tmp_data)
+
+    tmp_data = {"y": range(nrows)}
+    y = pd.DataFrame(tmp_data)
+
+    return X, y
+
+def lm():
+    lm = LinearRegression()
+    return lm
 
 
 ## Tests for_train_test_split()
