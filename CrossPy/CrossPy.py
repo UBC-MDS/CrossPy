@@ -12,8 +12,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.utils import check_random_state
 
 
-
-def train_test_split(X, y, test_size = 0.25, shuffle = True, random_state = None):
+def train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None):
     '''
     split features X and target y into train and test sets
 
@@ -33,9 +32,51 @@ def train_test_split(X, y, test_size = 0.25, shuffle = True, random_state = None
     y_test: a pandas dataframe, subset of y except y_train
 
     '''
-    pass
+    ## Input Errors
+    if not isinstance(X, pd.DataFrame):
+        raise TypeError('`X` must be a dataframe')
+    if not isinstance(y, pd.DataFrame):
+        raise TypeError('`y` must be a dataframe')
+    if not isinstance(test_size, float):
+        raise TypeError('`test_size` must be a float number')
+    if not isinstance(shuffle, bool):
+        raise TypeError('`shuffle` must be True or False')
+    if not (isinstance(random_state, int) or isinstance(random_state, float) or random_state is None):
+        raise TypeError('`random_state` must be a number or None')
+    if not (random_state is None):
+        if random_state <= 0:
+            raise ValueError('`random_state` must be nonnegative')
+    if test_size < 0 or test_size >= 1:
+        raise ValueError('`test_size` must in range [0, 1]')
+    if X.shape[0] != y.shape[0]:
+        raise ValueError("dim of `X` doesn't equal dim of `y`")
+    if y.shape[1] != 1:
+        raise ValueError('`y` is more than one feature')
+    if X.shape[0] < 3:
+        raise ValueError('sample size is less than 3, too small for split')
 
+    nrows = X.shape[0]
+    # where to split
+    M = int(nrows * (1 - test_size))
 
+    # split data
+    if shuffle == True:
+        check_random_state(random_state)
+        # shuffle indices
+        indices = np.arange(nrows)
+        np.random.shuffle(indices)
+
+        X_train = X.iloc[indices[0:M], :].reset_index(drop=True)
+        X_test = X.iloc[indices[M:nrows], :].reset_index(drop=True)
+        y_train = y.iloc[indices[0:M], :].reset_index(drop=True)
+        y_test = y.iloc[indices[M:nrows], :].reset_index(drop=True)
+    else:
+        X_train = X.iloc[0:M, :].reset_index(drop=True)
+        X_test = X.iloc[M:nrows, :].reset_index(drop=True)
+        y_train = y.iloc[0:M, :].reset_index(drop=True)
+        y_test = y.iloc[M:nrows, :].reset_index(drop=True)
+
+    return X_train, X_test, y_train, y_test
 
 
 def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
@@ -85,14 +126,14 @@ def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
     indices = split_data(X, k, shuffle, random_state)
 
     # Initialize scores output
-    scores = np.arange(k)
+    scores = np.arange(k)*1.0
     # For each fold tuple, get the corresponding training and val X and y, then train and score each
     for i in np.arange(k):
         ind_train, ind_val = next(indices)
         X_train = X.iloc[ind_train, :]
         X_val = X.iloc[ind_val, :]
-        y_train = X.iloc[ind_train, :]
-        y_val = X.iloc[ind_val, :]
+        y_train = y.iloc[ind_train, :]
+        y_val = y.iloc[ind_val, :]
 
         # Fit each model and score with R^2
         model.fit(X_train, y_train)

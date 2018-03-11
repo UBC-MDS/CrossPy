@@ -12,7 +12,37 @@ from sklearn.model_selection import cross_val_score
 
 ## Data Generation
 
-from CrossPy.test.test_all import data_gen, lm
+def data_gen(nrows=100, Non_perfect = False):
+    '''
+    Generate data
+
+    input:
+    ------
+    nrows: number of rows, an integer
+    Non_perfect: whether X, y are perfectly linear, True or False
+
+    output:
+    ------
+    X, a dataframe with nrows and two columns
+    y, a dataframe with nrows and one column
+    '''
+    tmp_data = {"X0": range(nrows), "X1": np.random.rand(nrows)}
+    X = pd.DataFrame(tmp_data)
+
+    if Non_perfect == False:
+        tmp_data = {"y": range(nrows)}
+        y = pd.DataFrame(tmp_data)
+    else:
+        tmp_data = {"y": X.X0 + X.X1*2 + nrows/20 * np.random.randn(nrows)}
+        y = pd.DataFrame(tmp_data)
+
+
+    return X, y
+
+
+def lm():
+    lm = LinearRegression()
+    return lm
 
 
 ## Tests for_cross_validation()
@@ -93,6 +123,16 @@ def test_X_y_Nrows():
 
 # Output Errors
 
+def test_X_y_perfect_linear():
+    X, y = data_gen(nrows = 100, Non_perfect=False)
+    function_scores = cross_validation(lm(), X = X, y = y, shuffle = False)
+    assert np.mean(function_scores) == 1 , "results doesn't match sklearn"
+
+def test_X_y_not_perfect_linear():
+    X, y = data_gen(nrows = 100, Non_perfect=True)
+    function_scores = cross_validation(lm(), X = X, y = y, shuffle = False)
+    assert np.mean(function_scores) > 0 and np.mean(function_scores) < 1 , "results doesn't match sklearn"
+
 def test_compare_sklearn_mod_0():
     X, y = data_gen(nrows = 99)
     function_scores = cross_validation(lm(), X = X, y = y, shuffle = False)
@@ -104,4 +144,5 @@ def test_compare_sklearn_mod_not_0():
     function_scores = cross_validation(lm(), X = X, y = y, shuffle = False)
     sklearn_scores = cross_val_score(lm(), X = X, y = y, cv = 3)
     assert max(function_scores - sklearn_scores) < 0.000001, "results doesn't match sklearn"
+
 
