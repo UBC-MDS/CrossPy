@@ -203,7 +203,6 @@ def summary_cv(scores):
     summary: a dictionary with the following statistics;
         mean: mean of CV scores
         standard_deviation: standard_deviation of CV scores
-        mode: mode of CV scores
         median: median of CV scores
     '''
     if not isinstance(scores, list):
@@ -221,7 +220,6 @@ def summary_cv(scores):
 
     summary['mean'] = round(float(np.mean(scores)), 3)
     summary['median'] = round(float(np.median(scores)), 3)
-    summary['mode'] = round(float(mode(scores)), 3)
     summary['sd'] = round(float(np.std(scores)), 3)
 
     return summary
