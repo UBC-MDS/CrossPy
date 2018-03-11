@@ -13,5 +13,6 @@
   "CrossPy/test/test_all.py::test_test_size_as_number": true,
   "CrossPy/test/test_all.py::test_test_size_range": true,
   "CrossPy/test/test_all.py::test_y_as_dataframe": true,
-  "CrossPy/test/test_all.py::test_y_one_column": true
+  "CrossPy/test/test_all.py::test_y_one_column": true,
+  "CrossPy/test/test_cv.py::test_compare_sklearn_with_Noise": true
 }

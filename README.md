@@ -15,15 +15,40 @@ Cross-validation is an important technique used in model selection and hyper-par
 
 Three main functions in `CrossPy`:
 
-- `train_test_split()`: This function split data according to input train/all ratio returns the split data. A random shuffling option is provided. (`stratification` option for imbalanced representations will also be included if time allows.)
+- `train_test_split()`: This function split data according to input train/all ratio returns the split data. A random shuffling option is provided.
 
 - `cross_validation()`: This function performs `k`-fold cross validation using the partitioned data and a selected model. It returns the scores of each validation. Additional methods for cross validation will be implemented (such as "Leave-One-Out" if time allows).  
 
 - `summary_cv()`: This function outputs summary statistics(mean, standard deviation, mode, median) of cross-validation scores.
 
+### Examples
+
+To install the package:
+```
+pip install git+https://github.com/UBCMDS/CrossPy.git
+```
+
+Given `X` (features) and `y` (targets) as pandas dataframes, one can split the data with default test size `0.25` as the following:
+```
+from CrossPy import *
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+```
+
+To do cross-validation on `X, y` using the `sklearn` `LinearRegression()` model:
+```
+lm = LinearRegression()
+scores = cross_validation(lm, X, y)
+```
+To see the summary of scores:
+```
+summary_cv(scores)
+```
+
+For more options of these functions, please see the documentation and source codes.
+
 ### Similar packages
 
-The [`scikit-learn`](http://scikit-learn.org/stable/) library in Python implements the first two functions we propose in [`sklearn.model_selection.train_test_split`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) and [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html). 
+The [`scikit-learn`](http://scikit-learn.org/stable/) library in Python implements the first two functions we propose in [`sklearn.model_selection.train_test_split`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) and [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html).
 
 
 ### License
