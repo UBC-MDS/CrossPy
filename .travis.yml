@@ -4,5 +4,6 @@ python:
 install:
   - pip install pandas
   - pip install sklearn
+  - pip install scipy
 script:
   - pytest
