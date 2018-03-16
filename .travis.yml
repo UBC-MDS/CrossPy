@@ -3,5 +3,6 @@ python:
   - "3.6"
 install:
   - pip install pandas
+  - pip install sklearn
 script:
   - pytest
