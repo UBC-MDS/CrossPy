@@ -47,7 +47,7 @@ summary_cv(scores)
 For more options of these functions, please see the documentation and source codes.
 
 ### Build Button
-[![Build Status](https://travis-ci.org/ShunChi100/CrossPy.svg?branch=master)](https://travis-ci.org/ShunChi100/CrossPy)
+[![Build Status](https://travis-ci.org/UBC-MDS/CrossPy.svg?branch=master)](https://travis-ci.org/UBC-MDS/CrossPy)
 
 ### Similar packages
 
