@@ -46,6 +46,9 @@ summary_cv(scores)
 
 For more options of these functions, please see the documentation and source codes.
 
+### Build Button
+[![Build Status](https://travis-ci.org/ShunChi100/CrossPy.svg?branch=master)](https://travis-ci.org/ShunChi100/CrossPy)
+
 ### Similar packages
 
 The [`scikit-learn`](http://scikit-learn.org/stable/) library in Python implements the first two functions we propose in [`sklearn.model_selection.train_test_split`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) and [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html).
