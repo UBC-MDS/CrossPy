@@ -129,7 +129,7 @@ def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
     scores = np.arange(k)*1.0
     # For each fold tuple, get the corresponding training and val X and y, then train and score each
     for i in np.arange(k):
-        ind_train, ind_val = next(indices)
+        ind_val, ind_train = next(indices)
         X_train = X.iloc[ind_train, :]
         X_val = X.iloc[ind_val, :]
         y_train = y.iloc[ind_train, :]

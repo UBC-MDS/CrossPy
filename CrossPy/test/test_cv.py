@@ -6,9 +6,10 @@ sys.path.insert(0, os.path.abspath("../"))
 import pytest
 import numpy as np
 import pandas as pd
-from CrossPy.CrossPy import train_test_split, cross_validation, summary_cv
+from CrossPy.CrossPy import cross_validation, split_data
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_val_score
+import types
 
 ## Data Generation
 
@@ -58,7 +59,7 @@ def test_X_as_dataframe():
 def test_y_as_dataframe():
     X, y = data_gen()
     with pytest.raises(TypeError):
-        train_test_split(lm(), X = X, y = "y")
+        cross_validation(lm(), X = X, y = "y")
 
 def test_k_as_number():
     X, y = data_gen()
@@ -103,7 +104,7 @@ def test_k_range_k_not_larger_than_nrows():
 def test_random_state_range():
     X, y = data_gen()
     with pytest.raises(TypeError):
-        cross_validation(lm, X=X, y=y, random_state=-10)
+        cross_validation(lm(), X=X, y=y, random_state=-10)
 
 
 # Input Dimension Errors
@@ -125,15 +126,26 @@ def test_y_one_column():
 def test_X_y_Nrows():
     X, y = data_gen(nrows = 2)
     with pytest.raises(TypeError):
-        cross_validation(lm(), X=X, y=y)
+        cross_validation(lm(), X=X, y=y, k = 2)
 
 
 # Output Errors
 
+
 def test_X_y_perfect_linear():
     X, y = data_gen(nrows = 100, Non_perfect=False)
     function_scores = cross_validation(lm(), X = X, y = y, shuffle = False)
-    assert np.mean(function_scores) == 1 , "results doesn't match sklearn"
+    assert np.mean(function_scores) == 1 , "Testing perfect linear case should have perfect socres (score=1)"
+
+def test_X_y_perfect_linear_random_state_12345():
+    X, y = data_gen(nrows=100, Non_perfect=False)
+    function_scores = cross_validation(lm(), X=X, y=y, shuffle=True, random_state=12345)
+    assert np.mean(function_scores) == 1, "shuffle=True, randome state should have no effect"
+
+def test_X_y_perfect_linear_random_state_None():
+    X, y = data_gen(nrows=100, Non_perfect=False)
+    function_scores = cross_validation(lm(), X=X, y=y, shuffle=True, random_state=None)
+    assert np.mean(function_scores) == 1, "shuffle=True, randome state should have no effect"
 
 def test_X_y_not_perfect_linear():
     X, y = data_gen(nrows = 100, Non_perfect=True)
@@ -151,5 +163,31 @@ def test_compare_sklearn_mod_not_0():
     function_scores = cross_validation(lm(), X = X, y = y, shuffle = False)
     sklearn_scores = cross_val_score(lm(), X = X, y = y, cv = 3)
     assert max(function_scores - sklearn_scores) < 0.000001, "results doesn't match sklearn"
+
+def test_split_data_output_is_generator():
+    X, y = data_gen()
+    indices = split_data(X, shuffle=False)
+    assert isinstance(indices, types.GeneratorType), "split_data output should be a generator"
+
+def test_split_data_shuffle_False_first_val_fold():
+    X, y = data_gen()
+    indices = split_data(X, shuffle=False)
+    ind_val, ind_train = next(indices)
+    assert np.array_equal(ind_val, np.arange(34)), "`shuffle=False` doesn't work in split_data for the first validation fold"
+
+def test_split_data_shuffle_False_last_val_fold():
+    X, y = data_gen()
+    indices = split_data(X, shuffle=False)
+    next(indices)
+    next(indices)
+    ind_val, ind_train = next(indices)
+    assert np.array_equal(ind_val, np.arange(67, 100)), "`shuffle=False` doesn't work in split_data for the validation fold"
+
+def test_split_data_shuffle_True():
+    X, y = data_gen()
+    indices = split_data(X, shuffle=True)
+    ind_val, ind_train = next(indices)
+    assert not np.array_equal(ind_val, np.arange(34)), "`shuffle=True` doesn't work in split_data"
+
 
 

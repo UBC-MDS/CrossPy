@@ -153,3 +153,13 @@ def test_shuffle_False():
     v3 = y_train.append(y_test).y.as_matrix()
     v4 = y.as_matrix().flatten()
     assert (np.array_equal(v1, v2) and np.array_equal(v3, v4)), "X/y_train + X/y_test is shuffled while `shuffle=False`"
+
+def test_shuffle_False_random_state_effect():
+    X, y = data_gen(nrows=100)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, shuffle=False, random_state=12345)
+
+    v1 = X_train.append(X_test).X0.as_matrix()
+    v2 = X.X0.as_matrix()
+    v3 = y_train.append(y_test).y.as_matrix()
+    v4 = y.as_matrix().flatten()
+    assert (np.array_equal(v1, v2) and np.array_equal(v3, v4)), "`shuffle=False`: random state should have no effect"
