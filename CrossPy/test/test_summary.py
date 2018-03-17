@@ -4,7 +4,6 @@ sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath("../"))
 
 import pytest
-import numpy as np
 import pandas as pd
 from CrossPy.CrossPy import summary_cv
 
@@ -48,7 +47,7 @@ def test_is_dict():
     assert isinstance(summary_cv(gen_summary()), dict)
 
 def test_output_length():
-    assert len(summary_cv(gen_summary())) == 4
+    assert len(summary_cv(gen_summary())) == 3
 
 def test_mean_is_float():
     assert isinstance(summary_cv(gen_summary())['mean'], float)

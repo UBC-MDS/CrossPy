@@ -205,8 +205,8 @@ def summary_cv(scores):
         standard_deviation: standard_deviation of CV scores
         median: median of CV scores
     '''
-    if not isinstance(scores, list):
-        raise TypeError('`scores` must be a list')
+    if not (isinstance(scores, list) or isinstance(scores, np.ndarray)):
+        raise TypeError('`scores` must be a list or numpy vector')
     if len(scores) == 0:
         raise TypeError('`scores` cannot be of length zero')
     if not all(isinstance(item, (float, int)) for item in scores):
@@ -216,7 +216,7 @@ def summary_cv(scores):
     if not all(item <= 1 for item in scores):
         raise ValueError('Elements of `scores` must be between 0 and 1')
 
-    summary = {'mean' : [], 'median': [], 'mode': [], 'sd': []}
+    summary = {'mean' : [], 'median': [], 'sd': []}
 
     summary['mean'] = round(float(np.mean(scores)), 3)
     summary['median'] = round(float(np.median(scores)), 3)
