@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/UBC-MDS/CrossPy.svg?branch=master)](https://travis-ci.org/UBC-MDS/CrossPy)
 
+[![Coverage Status](https://coveralls.io/repos/github/Nazliozum/CrossPy/badge.svg?branch=master)](https://coveralls.io/github/Nazliozum/CrossPy?branch=master)
+
 The `CrossPy` package (short for _Cross_-validation in *Py*thon) is a package for performing cross-validation in Python.
 
 ### Contributors
