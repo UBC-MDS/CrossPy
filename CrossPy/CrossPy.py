@@ -205,7 +205,7 @@ def summary_cv(scores):
         standard_deviation: standard_deviation of CV scores
         median: median of CV scores
     '''
-    if not (isinstance(scores, list) or isinstance(scores, np.ndarray)):
+    if not isinstance(scores, (list, np.ndarray)):
         raise TypeError('`scores` must be a list or numpy vector')
     if len(scores) == 0:
         raise TypeError('`scores` cannot be of length zero')

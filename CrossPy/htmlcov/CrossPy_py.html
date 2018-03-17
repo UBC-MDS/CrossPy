@@ -504,7 +504,7 @@
 <p id="t205" class="pln"><span class="str">        standard_deviation: standard_deviation of CV scores</span><span class="strut">&nbsp;</span></p>
 <p id="t206" class="pln"><span class="str">        median: median of CV scores</span><span class="strut">&nbsp;</span></p>
 <p id="t207" class="pln"><span class="str">    '''</span><span class="strut">&nbsp;</span></p>
-<p id="t208" class="stm run hide_run">    <span class="key">if</span> <span class="key">not</span> <span class="op">(</span><span class="nam">isinstance</span><span class="op">(</span><span class="nam">scores</span><span class="op">,</span> <span class="nam">list</span><span class="op">)</span> <span class="key">or</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">scores</span><span class="op">,</span> <span class="nam">np</span><span class="op">.</span><span class="nam">ndarray</span><span class="op">)</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t208" class="stm run hide_run">    <span class="key">if</span> <span class="key">not</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">scores</span><span class="op">,</span> <span class="op">(</span><span class="nam">list</span><span class="op">,</span> <span class="nam">np</span><span class="op">.</span><span class="nam">ndarray</span><span class="op">)</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t209" class="stm run hide_run">        <span class="key">raise</span> <span class="nam">TypeError</span><span class="op">(</span><span class="str">'`scores` must be a list or numpy vector'</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t210" class="stm run hide_run">    <span class="key">if</span> <span class="nam">len</span><span class="op">(</span><span class="nam">scores</span><span class="op">)</span> <span class="op">==</span> <span class="num">0</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t211" class="stm run hide_run">        <span class="key">raise</span> <span class="nam">TypeError</span><span class="op">(</span><span class="str">'`scores` cannot be of length zero'</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
@@ -532,7 +532,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.1</a>,
-            created at 2018-03-17 00:31
+            created at 2018-03-17 00:41
         </p>
     </div>
 </div>
