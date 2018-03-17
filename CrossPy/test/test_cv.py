@@ -65,10 +65,13 @@ def test_k_as_number():
     with pytest.raises(TypeError):
         cross_validation(lm(), X = X, y = y, k = '3')
 
-def test_shuffle_as_boolean():
+def test_shuffle_as_boolean_not_string():
     X, y = data_gen()
     with pytest.raises(TypeError):
         cross_validation(lm(), X = X, y = y, shuffle = '1')
+
+def test_shuffle_as_boolean_not_numeric():
+    X, y = data_gen()
     with pytest.raises(TypeError):
         cross_validation(lm(), X=X, y=y, shuffle=1.0)
 
@@ -85,10 +88,14 @@ def test_model_linear_regression():
 
 # Input Value Errors
 
-def test_k_range():
+def test_k_range_k_not_one():
     X, y = data_gen(nrows = 5)
     with pytest.raises(TypeError):
         cross_validation(lm(), X=X, y=y, k = 1)
+
+
+def test_k_range_k_not_larger_than_nrows():
+    X, y = data_gen(nrows = 5)
     with pytest.raises(TypeError):
         cross_validation(lm(), X=X, y=y, k = 40)
 

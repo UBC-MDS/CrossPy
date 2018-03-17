@@ -33,12 +33,6 @@ def data_gen(nrows=100):
 
     return X, y
 
-def lm():
-    lm = LinearRegression()
-    return lm
-
-
-## Tests for_train_test_split()
 ##'Tests for function `train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None)`
 # Input Type Errors
 
@@ -60,10 +54,13 @@ def test_test_size_as_number():
         train_test_split(X=X, y=y, test_size='0.5')
 
 
-def test_shuffle_as_boolean():
+def test_shuffle_as_boolean_not_string():
     X, y = data_gen()
     with pytest.raises(TypeError):
         train_test_split(X=X, y=y, shuffle='1')
+
+def test_shuffle_as_boolean_not_numeric():
+    X, y = data_gen()
     with pytest.raises(TypeError):
         train_test_split(X=X, y=y, shuffle=1.0)
 
@@ -76,10 +73,13 @@ def test_random_state_as_number():
 
 # Input Value Errors
 
-def test_test_size_range():
-    X, y = data_gen(nrows=5)
+def test_test_size_range_large_than_1():
+    X, y = data_gen()
     with pytest.raises(ValueError):
         train_test_split(X=X, y=y, test_size=1.1)
+
+def test_test_size_range_small_than_0():
+    X, y = data_gen()
     with pytest.raises(ValueError):
         train_test_split(X=X, y=y, test_size=- 0.1)
 

@@ -50,13 +50,20 @@ def test_is_dict():
 def test_output_length():
     assert len(summary_cv(gen_summary())) == 4
 
-def test_is_float():
+def test_mean_is_float():
     assert isinstance(summary_cv(gen_summary())['mean'], float)
+
+def test_median_is_float():
     assert isinstance(summary_cv(gen_summary())['median'], float)
+
+def test_sd_is_float():
     assert isinstance(summary_cv(gen_summary())['sd'], float)
 
-
-def test_summary_cv():
+def test_summary_cv_mean():
     assert summary_cv(gen_summary())['mean'] == 0.967
+
+def test_summary_cv_median():
     assert summary_cv(gen_summary())['median'] == 0.97
+
+def test_summary_cv_sd():
     assert summary_cv(gen_summary())['sd'] == 0.009
