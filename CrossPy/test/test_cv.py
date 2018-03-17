@@ -183,6 +183,15 @@ def test_split_data_shuffle_False_last_val_fold():
     ind_val, ind_train = next(indices)
     assert np.array_equal(ind_val, np.arange(67, 100)), "`shuffle=False` doesn't work in split_data for the validation fold"
 
+def test_split_data_StopIteration_error():
+    X, y = data_gen()
+    indices = split_data(X, shuffle=False)
+    next(indices)
+    next(indices)
+    next(indices)
+    with pytest.raises(StopIteration):
+        next(indices)
+
 def test_split_data_shuffle_True():
     X, y = data_gen()
     indices = split_data(X, shuffle=True)
