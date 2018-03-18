@@ -13,5 +13,5 @@ setup(
         "pandas",
         "sklearn",
         "pytest",
-    ],
+    ]
 )

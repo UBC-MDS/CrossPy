@@ -51,10 +51,6 @@ summary_cv(scores)
 
 For more options of these functions, please see the documentation and source codes.
 
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/master
 ### Similar packages
 
 The [`scikit-learn`](http://scikit-learn.org/stable/) library in Python implements the first two functions we propose in [`sklearn.model_selection.train_test_split`](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) and [`sklearn.cross_validation`](http://scikit-learn.org/stable/modules/cross_validation.html).
