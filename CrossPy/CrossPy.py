@@ -1,19 +1,16 @@
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.utils import check_random_state
 import sys
 import os
+
 sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath("../"))
 
-import pytest
-import numpy as np
-import pandas as pd
-from statistics import mode
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import cross_val_score
-from sklearn.utils import check_random_state
-
 
 def train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None):
-    '''
+    """
     split features X and target y into train and test sets
 
     inputs
@@ -31,8 +28,9 @@ def train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None):
     y_train: a pandas dataframe, subset of y
     y_test: a pandas dataframe, subset of y except y_train
 
-    '''
-    ## Input Errors
+    """
+
+    # Input Errors
     if not isinstance(X, pd.DataFrame):
         raise TypeError('`X` must be a dataframe')
     if not isinstance(y, pd.DataFrame):
@@ -60,7 +58,7 @@ def train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None):
     M = int(nrows * (1 - test_size))
 
     # split data
-    if shuffle == True:
+    if shuffle:
         check_random_state(random_state)
         # shuffle indices
         indices = np.arange(nrows)
@@ -79,8 +77,8 @@ def train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None):
     return X_train, X_test, y_train, y_test
 
 
-def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
-    '''
+def cross_validation(model, X, y, k=3, shuffle=True, random_state=None):
+    """
     Perform cross validation on features X and target y using the model
 
     inputs
@@ -95,8 +93,9 @@ def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
     returns:
     --------
     scores: a vector of validation scores
-    '''
-    ## Input Errors
+    """
+
+    # Input Errors
     if not isinstance(X, pd.DataFrame):
         raise TypeError('`X` must be a dataframe')
     if not isinstance(y, pd.DataFrame):
@@ -121,12 +120,11 @@ def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
     if type(model) != type(LinearRegression()):
         raise TypeError('model is not an sklearn LinearRegression model')
 
-
     # If shuffle is True or False, this code will still run - see helper function below
     indices = split_data(X, k, shuffle, random_state)
 
     # Initialize scores output
-    scores = np.arange(k)*1.0
+    scores = np.arange(k) * 1.0
     # For each fold tuple, get the corresponding training and val X and y, then train and score each
     for i in np.arange(k):
         ind_val, ind_train = next(indices)
@@ -143,7 +141,7 @@ def cross_validation(model, X, y, k = 3, shuffle = True, random_state = None):
     return scores
 
 
-def split_data(X, k=3, shuffle=True, random_state = None):
+def split_data(X, k=3, shuffle=True, random_state=None):
     """
     Helper Function for cross_validaton
     :param X: dataframe
@@ -175,7 +173,7 @@ def split_data(X, k=3, shuffle=True, random_state = None):
 
     val_indicies = []
 
-    if shuffle == True:
+    if shuffle:
         check_random_state(random_state).shuffle(all_indices)
 
     current = 0
@@ -191,7 +189,7 @@ def split_data(X, k=3, shuffle=True, random_state = None):
 
 
 def summary_cv(scores):
-    '''
+    """
     Calculate statistics of cross validation cv_scores
 
     inputs
@@ -204,7 +202,7 @@ def summary_cv(scores):
         mean: mean of CV scores
         standard_deviation: standard_deviation of CV scores
         median: median of CV scores
-    '''
+    """
     if not isinstance(scores, (list, np.ndarray)):
         raise TypeError('`scores` must be a list or numpy vector')
     if len(scores) == 0:
@@ -216,10 +214,8 @@ def summary_cv(scores):
     if not all(item <= 1 for item in scores):
         raise ValueError('Elements of `scores` must be between 0 and 1')
 
-    summary = {'mean' : [], 'median': [], 'sd': []}
-
-    summary['mean'] = round(float(np.mean(scores)), 3)
-    summary['median'] = round(float(np.median(scores)), 3)
-    summary['sd'] = round(float(np.std(scores)), 3)
+    summary = {'mean': round(float(np.mean(scores)), 3),
+               'median': round(float(np.median(scores)), 3),
+               'sd': round(float(np.std(scores)), 3)}
 
     return summary

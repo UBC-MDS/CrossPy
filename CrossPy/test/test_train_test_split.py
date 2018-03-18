@@ -1,18 +1,19 @@
+import numpy as np
+import pandas as pd
+import pytest
+from CrossPy.CrossPy import train_test_split
+
 import sys
 import os
+
 sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath("../"))
 
-import numpy as np
-import pandas as pd
 
-import pytest
-from CrossPy.CrossPy import train_test_split, cross_validation, summary_cv
-
-## Data Generation
+# Data Generation
 
 def data_gen(nrows=100):
-    '''
+    """
     Generate data
 
     input:
@@ -24,7 +25,7 @@ def data_gen(nrows=100):
     X, a dataframe with nrows and two columns
     y, a dataframe with nrows and one column
 
-    '''
+    """
     tmp_data = {"X0": range(nrows), "X1": np.random.rand(nrows)}
     X = pd.DataFrame(tmp_data)
 
@@ -33,7 +34,8 @@ def data_gen(nrows=100):
 
     return X, y
 
-##'Tests for function `train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None)`
+
+#'Tests for function `train_test_split(X, y, test_size=0.25, shuffle=True, random_state=None)`
 # Input Type Errors
 
 def test_X_as_dataframe():
@@ -59,6 +61,7 @@ def test_shuffle_as_boolean_not_string():
     with pytest.raises(TypeError):
         train_test_split(X=X, y=y, shuffle='1')
 
+
 def test_shuffle_as_boolean_not_numeric():
     X, y = data_gen()
     with pytest.raises(TypeError):
@@ -77,6 +80,7 @@ def test_test_size_range_large_than_1():
     X, y = data_gen()
     with pytest.raises(ValueError):
         train_test_split(X=X, y=y, test_size=1.1)
+
 
 def test_test_size_range_small_than_0():
     X, y = data_gen()
@@ -153,6 +157,7 @@ def test_shuffle_False():
     v3 = y_train.append(y_test).y.as_matrix()
     v4 = y.as_matrix().flatten()
     assert (np.array_equal(v1, v2) and np.array_equal(v3, v4)), "X/y_train + X/y_test is shuffled while `shuffle=False`"
+
 
 def test_shuffle_False_random_state_effect():
     X, y = data_gen(nrows=100)
