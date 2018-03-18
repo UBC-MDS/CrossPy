@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30f1c9ad-0ee0-41b4-a787-ad8410521eca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.cache/v/cache/lastfailed" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.coverage" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/CrossPy/CrossPy.py" afterPath="$PROJECT_DIR$/CrossPy/CrossPy.py" />
-      <change beforePath="$PROJECT_DIR$/CrossPy/test/test_cv.py" afterPath="$PROJECT_DIR$/CrossPy/test/test_cv.py" />
-      <change beforePath="$PROJECT_DIR$/CrossPy/test/test_integration_test.py" afterPath="$PROJECT_DIR$/CrossPy/test/test_integration_test.py" />
-      <change beforePath="$PROJECT_DIR$/CrossPy/test/test_summary.py" afterPath="$PROJECT_DIR$/CrossPy/test/test_summary.py" />
-      <change beforePath="$PROJECT_DIR$/CrossPy/test/test_train_test_split.py" afterPath="$PROJECT_DIR$/CrossPy/test/test_train_test_split.py" />
-      <change beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CrossPy.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CrossPy.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CrossPy/CrossPy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="-2980">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -47,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/CrossPy/test/test_train_test_split.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="486">
-              <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+              <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -59,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/CrossPy/test/test_summary.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1494">
-              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -71,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/CrossPy/test/test_integration_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="530">
-              <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+              <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -79,10 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_cv.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_cv.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CrossPy/test/test_cv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="858">
+            <state relative-caret-position="3888">
               <caret line="216" column="29" lean-forward="false" selection-start-line="216" selection-start-column="29" selection-end-line="216" selection-end-column="29" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -371,20 +364,10 @@
     <entry file="file://$PROJECT_DIR$/CrossPy/test/test.py" />
     <entry file="file://$PROJECT_DIR$/CrossPy/test/test_all.py" />
     <entry file="file://$PROJECT_DIR$/CrossPy/test/test_data/test_train_test_split.py" />
-    <entry file="file://$PROJECT_DIR$/CrossPy/CrossPy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CrossPy/test/test_integration_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="530">
-          <caret line="38" column="10" lean-forward="true" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -394,7 +377,7 @@
     <entry file="file://$PROJECT_DIR$/CrossPy/test/test_summary.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1494">
-          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -404,7 +387,7 @@
     <entry file="file://$PROJECT_DIR$/CrossPy/test/test_train_test_split.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
-          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -421,10 +404,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CrossPy/test/test_cv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
+        <state relative-caret-position="3888">
           <caret line="216" column="29" lean-forward="false" selection-start-line="216" selection-start-column="29" selection-end-line="216" selection-end-column="29" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CrossPy/CrossPy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2980">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
