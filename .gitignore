@@ -3,3 +3,5 @@ __pycache__
 ./CrossPy/test/test_data/data_testing.ipynb
 *.DS_Store
 tmp
+.cache
+.cache/*
