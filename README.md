@@ -1,6 +1,8 @@
 # CrossPy
 The `CrossPy` package (short for _Cross_-validation in *Py*thon) is a package for performing cross-validation in Python.
 
+[![Build Status](https://travis-ci.org/UBC-MDS/CrossPy.svg?branch=master)](https://travis-ci.org/UBC-MDS/CrossPy)
+
 ### Contributors
 
 * Nazli Ozum Kafaee / @nazliozum
@@ -46,8 +48,6 @@ summary_cv(scores)
 
 For more options of these functions, please see the documentation and source codes.
 
-### Build Button
-[![Build Status](https://travis-ci.org/UBC-MDS/CrossPy.svg?branch=master)](https://travis-ci.org/UBC-MDS/CrossPy)
 
 ### Similar packages
 
